@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">🏢 Employee Management</div>
+        <div class="nav-links">
+            <a href="{{ url_for('main.index') }}">All Employees</a>
+            <a href="{{ url_for('main.add_employee') }}">Add Employee</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Flash messages — shown when you add, edit, or delete an employee -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- This is where each page's unique content will appear -->
+        {% block content %}{% endblock %}
+
+    </div>
+
+</body>
+</html>
