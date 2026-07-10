@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emp-cicd-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: emp-cicd-app
+  template:
+    metadata:
+      labels:
+        app: emp-cicd-app
+    spec:
+      containers:
+        - name: emp-cicd-app
+          image: employee-management
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
