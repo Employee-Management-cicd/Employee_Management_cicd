@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: emp-cicd-app
-          image: employee-management
-          imagePullPolicy: Never
+          image: snehaa005/employee-management:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
