@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "snehaa005/employee-management"
+        DOCKER_IMAGE = "sneha0206/employee-app"
         DOCKER_TAG   = "latest"
     }
 
