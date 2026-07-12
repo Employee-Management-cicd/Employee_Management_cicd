@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "snehaa005/employee-management"
+        DOCKER_IMAGE = "sneha0206/employee-app"
         DOCKER_TAG   = "latest"
     }
 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 echo 'Pushing image to Docker Hub...'
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
+                    credentialsId: 'dockerhub-creds-teammate',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
