@@ -136,3 +136,4 @@ Employee_Management_cicd/
 # clean webhook test
 # retest after jenkins restart
 # test after job recreation
+# test after manual build 1 completed
