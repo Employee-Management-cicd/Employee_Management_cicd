@@ -9,3 +9,4 @@ __pycache__/
 *.md
 tests/
 .vscode/
+node_modules/
