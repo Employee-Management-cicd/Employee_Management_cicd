@@ -138,3 +138,4 @@ Employee_Management_cicd/
 # test after job recreation
 # test after manual build 1 completed
 # direct build list test
+# retest after jenkins restart
