@@ -17,10 +17,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo '📦 Installing Python dependencies...'
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
+                bat '''
+                    python -m venv venv
+                    call venv\\Scripts\\activate.bat
+                    python -m pip install --upgrade pip
                     pip install -r requirements.txt
                 '''
             }
@@ -29,8 +29,8 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo '🧪 Running automated tests with pytest...'
-                sh '''
-                    . venv/bin/activate
+                bat '''
+                    call venv\\Scripts\\activate.bat
                     python -m pytest tests/ -v
                 '''
             }
@@ -39,8 +39,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo '🐳 Building Docker image...'
-                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+                bat "docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% ."
+                bat "docker tag %DOCKER_IMAGE%:%DOCKER_TAG% %DOCKER_IMAGE%:latest"
             }
         }
 
@@ -52,9 +52,9 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                    sh "docker push ${DOCKER_IMAGE}:latest"
+                    bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
+                    bat "docker push %DOCKER_IMAGE%:%DOCKER_TAG%"
+                    bat "docker push %DOCKER_IMAGE%:latest"
                 }
             }
         }
@@ -62,7 +62,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo '🚀 Deploying to Kubernetes...'
-                sh '''
+                bat '''
                     kubectl apply -f k8s/deployment.yaml
                     kubectl apply -f k8s/service.yaml
                     kubectl rollout restart deployment/emp-cicd-app
@@ -80,7 +80,7 @@ pipeline {
             echo '💥 Pipeline FAILED! Check the red stage above.'
         }
         always {
-            sh 'docker logout || true'
+            bat 'docker logout || exit 0'
         }
     }
 }
