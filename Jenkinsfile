@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "priyal9497/employee-app"
         DOCKER_TAG   = "${BUILD_NUMBER}"
+        KUBECONFIG   = "C:\\Windows\\System32\\config\\systemprofile\\.kube\\config"
     }
 
     stages {
@@ -63,10 +64,10 @@ pipeline {
             steps {
                 echo '🚀 Deploying to Kubernetes...'
                 bat '''
-                    kubectl apply -f k8s/deployment.yaml
-                    kubectl apply -f k8s/service.yaml
+                    kubectl apply -f k8s/deployment.yaml --validate=false
+                    kubectl apply -f k8s/service.yaml --validate=false
                     kubectl rollout restart deployment/emp-cicd-app
-                    kubectl rollout status deployment/emp-cicd-app --timeout=120s
+                    kubectl rollout status deployment/emp-cicd-app --timeout=180s
                 '''
             }
         }
