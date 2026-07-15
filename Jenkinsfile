@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "priyal9497/employee-app"
+        DOCKER_IMAGE = "sneha0206/employee-app"
         DOCKER_TAG   = "${BUILD_NUMBER}"
         KUBECONFIG   = "C:\\Windows\\System32\\config\\systemprofile\\.kube\\config"
     }
