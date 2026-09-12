@@ -475,7 +475,7 @@ Running Application
 
 The main goal of this project is to demonstrate how a modern DevOps workflow can automate the software delivery process.
 
-The project demonstrates::::
+The project demonstrates::::::
 
 - Continuous Integration
 - Continuous Delivery
