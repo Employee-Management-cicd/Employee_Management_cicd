@@ -387,7 +387,7 @@ docker compose down
 
 ---
 
-## Project Structure
+## Project Structure/ Architecture
 
 ```text
 Employee_Management_cicd/
@@ -506,7 +506,7 @@ The project demonstrates::::::
 
 ## Future Enhancements
 
-- Add user authentication and authorization
+- Add user authentication and authorization 
 - Replace SQLite with PostgreSQL or MySQL
 - Add Kubernetes Ingress
 - Add HTTPS/TLS
