@@ -387,7 +387,7 @@ docker compose down
 
 ---
 
-## Project Structure/ Architecture ..
+## Project Structure/ 
 
 ```text
 Employee_Management_cicd/
